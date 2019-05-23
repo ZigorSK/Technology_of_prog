@@ -4,17 +4,17 @@ Long::Long()
 {
 	arr_ptr = nullptr;
 	size = 0;
-	
+
 }
 
-Long::Long(int len )
+Long::Long(int len  = 5)
 {
 	arr_ptr = new long int[len];
 	size = len;
 
 	for (int i = 0; i < len; i++)
 	{
-		cout << "¬‚Â‰ËÚÂ ˝ÎÂÏÂÌÚ ÚËÔ‡ long int:";
+		cout << "–í–≤–µ–¥–∏—Ç–µ —ç–ª–µ–º–µ–Ω—Ç —Ç–∏–ø–∞ long int:";
 		cin >> *(arr_ptr + i);
 		cout << endl;
 	}
@@ -23,11 +23,11 @@ Long::Long(int len )
 
 Long::Long(const Long &obg)
 {
-	arr_ptr = new long int[obg.size];//¬˚‰ÂÎˇÂÏ Ô‡ÏˇÚ¸ ‰Îˇ ÌÓ‚Ó„Ó Ó·˙ÂÍÚ‡
+	arr_ptr = new long int[obg.size];//–í—ã–¥–µ–ª—è–µ–º –ø–∞–º—è—Ç—å –¥–ª—è –Ω–æ–≤–æ–≥–æ –æ–±—ä–µ–∫—Ç–∞
 
 	long int *ptr = obg.arr_ptr;
 
-	for (int i = 0; i < obg.size; i++)//ÍÓÔËÛÂÏ ÁÌ‡˜ÂÌËˇ ‚ ÌÓ‚˚È Ó·˙ÂÍÚ
+	for (int i = 0; i < obg.size; i++)//–∫–æ–ø–∏—Ä—É–µ–º –∑–Ω–∞—á–µ–Ω–∏—è –≤ –Ω–æ–≤—ã–π –æ–±—ä–µ–∫—Ç
 	{
 		*(arr_ptr + i) = *(ptr + i);
 	}
@@ -55,7 +55,7 @@ Long & Long::operator+(Long &obg)
 	}
 	else
 	{
-		if (size > obg.get_size())// —ÍÎ‡‰˚‚‡ÂÏ  obg.get_size() ÔÂ‚˚ı ˝ÎÂÏÂÌÚÓ‚ obg c obg.get_size() ÔÂ‚˚ı ˝ÎÂÏÂÌÚÓ‚ this
+		if (size > obg.get_size())// –°–∫–ª–∞–¥—ã–≤–∞–µ–º  obg.get_size() –ø–µ—Ä–≤—ã—Ö —ç–ª–µ–º–µ–Ω—Ç–æ–≤ obg c obg.get_size() –ø–µ—Ä–≤—ã—Ö —ç–ª–µ–º–µ–Ω—Ç–æ–≤ this
 		{
 			for (int i = 0; i < obg.get_size(); i++)
 				*(l.get_arr_ptr() + i) += *(arr_ptr + i);
@@ -74,19 +74,46 @@ Long & Long::operator/(Long & obg)
 	if (size == obg.get_size())
 	{
 		for (int i = 0; i < size; i++)
-			*(l.get_arr_ptr() + i) /= *(obg.get_arr_ptr() + i);
+		{
+			if (*(obg.get_arr_ptr() + i) != 0)
+			{
+				*(l.get_arr_ptr() + i) /= *(obg.get_arr_ptr() + i);
+			}
+			else
+			{
+				cout << "–î–µ–ª–µ–Ω–∏–µ –Ω–∞ 0!!! –î–µ–ª–µ–Ω–∏–µ –¥–∞–Ω–Ω—ã—Ö —ç–ª–µ–º–µ–Ω—Ç–æ–≤ –Ω–µ –±—ã–ª–æ –≤—ã–ø–æ–ª–Ω–µ–Ω–æ!" << endl;
+			}
+		}
 	}
 	else
 	{
-		if (size > obg.get_size())// ÒÏ. ÔÂ‰˚‰Û˘ËÂ ÔÂÂ„ÛÁÍË, ‚Ò∏ ‡Ì‡ÎÓ„Ë˜ÌÓ
+		if (size > obg.get_size())// —Å–º. –ø—Ä–µ–¥—ã–¥—É—â–∏–µ –ø–µ—Ä–µ–≥—Ä—É–∑–∫–∏, –≤—Å—ë –∞–Ω–∞–ª–æ–≥–∏—á–Ω–æ
 		{
 			for (int i = 0; i < obg.get_size(); i++)
-				*(l.get_arr_ptr() + i) /= *(obg.get_arr_ptr() + i);
+			{
+				if (*(obg.get_arr_ptr() + i) != 0)
+				{
+					*(l.get_arr_ptr() + i) /= *(obg.get_arr_ptr() + i);
+				}
+				else
+				{
+					cout << "–î–µ–ª–µ–Ω–∏–µ –Ω–∞ 0!!! –î–µ–ª–µ–Ω–∏–µ –¥–∞–Ω–Ω—ã—Ö —ç–ª–µ–º–µ–Ω—Ç–æ–≤ –Ω–µ –±—ã–ª–æ –≤—ã–ø–æ–ª–Ω–µ–Ω–æ!" << endl;
+				}
+			}
 		}
 		else
 		{
 			for (int i = 0; i < size; i++)
-				*(l.get_arr_ptr() + i) /= *(obg.get_arr_ptr() + i);
+			{
+				if (*(obg.get_arr_ptr() + i) != 0)
+				{
+					*(l.get_arr_ptr() + i) /= *(obg.get_arr_ptr() + i);
+				}
+				else
+				{
+					cout << "–î–µ–ª–µ–Ω–∏–µ –Ω–∞ 0!!! –î–µ–ª–µ–Ω–∏–µ –¥–∞–Ω–Ω—ã—Ö —ç–ª–µ–º–µ–Ω—Ç–æ–≤ –Ω–µ –±—ã–ª–æ –≤—ã–ø–æ–ª–Ω–µ–Ω–æ!" << endl;
+				}
+			}
 		}
 	}
 	return l;
